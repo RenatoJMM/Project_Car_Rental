@@ -2,7 +2,6 @@ package Controller;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.Period;
 import java.time.temporal.ChronoUnit;
 
 import Domain.LegalEntity;
@@ -41,15 +40,16 @@ public class ReturnVehicle {
 
         returnService.create(location, dateTime, rent);
 
-        System.out.println("Return Made Successfully!");
+        System.out.println("\nReturn Made Successfully!");
 
-        System.out.println("Order Summary:");
+        System.out.println("\n----- Order Summary -----");
         System.out.println("Vehicle: " + rent.getVehicle().getName());
         System.out.println("Person: " + rent.getPerson().getName());
 
-        long min = ChronoUnit.MINUTES.between(rent.getDateTime(), dateTime);
+        long seg = ChronoUnit.SECONDS.between(rent.getDateTime(), dateTime);
 
-        long numberOfDays = Math.ceilDiv(min, 1440);
+        // long numberOfDays = Math.ceilDiv(min, 1440);
+        long numberOfDays = Math.ceilDiv(seg, 86400);
 
         BigDecimal price = rent.getVehicle().getType().getPricePerDay().multiply(new BigDecimal(numberOfDays));
 

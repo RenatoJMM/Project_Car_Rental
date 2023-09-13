@@ -24,11 +24,6 @@ public class ReturnService {
         COUNTER_ID++;
     }
 
-    // public Return find(int index) {
-    // String id = String.valueOf(index);
-    // return repo.findOne(id);
-    // }
-
     public List<Return> listAll() {
         return repo.findAll();
     }
